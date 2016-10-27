@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		
+		<!--
+		设备布局宽度(高度) = 设备物理分辨率/window.devicePixelRatio/(initial-scale)
+		
+		
+		1040 = （document.documentElemnt.clienHeight）/scale ;
+		-->
+		<title>盗墓笔记</title>
+		<script src="js/jquery-1.11.1.js"></script>
+		<script>
+			var DesW = 640;
+			var DesH = 1040;
+//			var scale = document.documentElement.clientWidth/DesW; 
+			//等宽布局方式
+			
+			var scale = document.documentElement.clientHeight/DesH;
+			//等高布局方式
+			$("meta[name=viewport]").attr("content","width=device-width,initial-scale="+scale+",user-scalable=no")
+		</script>
+		
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			html,body,#loading{
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			
+			#loading{
+				background: black;
+				color:white;
+				font-size: 30px;
+				position: relative;
+			}
+			
+			#loading div{
+				position: absolute;
+				top:50%;
+				line-height: 50px;
+				margin-top: -50px;
+				left:0px;
+				width: 100%;
+				text-align: center;
+			}
+			
+			canvas{
+				position: absolute;
+				top:0px;
+				left:0px;
+			}
+			#daomuCanvas{
+				z-index: 10;
+			}
+		</style>
+	</head>
+	<body>
+		
+		
+		<div id="loading">
+			<div>
+				<p id="imgageLoadPercentage">0%</p>
+				<p>正在下载 盗墓笔记全篇</p>
+			</div>
+		</div>
+		<canvas id="daomuCanvas"></canvas>
+		<canvas id="faceCanvas"></canvas>
+		<audio src="sounds/face.mp3" id="faceAudio"></audio>
+		<audio src="sounds/gohome.mp3" id="homeAudio"></audio>
+		<script src="js/main.js"></script>
+	</body>
+</html>
